@@ -1,0 +1,60 @@
+{
+	"plugin_id": "freemsg",
+	"name_fr": "Free Messagerie",
+	"icon": "Free_Messagerie.png",
+	"version": "1.1",
+	"creation_date": "2017-09-13",
+	"modification_date": "2018-02-28",
+	"author": "timetre",
+	"description_fr": "Ce plugin affiche le nombre de messages dans la boîte vocale de Free ADSL",
+	"description_en": "This plugin displays the number of messages in your Free ADSL voicemail",
+	"description_es": "",
+	"description_it": "",
+	"description_de": "",
+	"forum_link": "http://forum.eedomus.com/viewtopic.php?f=50&t=5876",
+	"parameters":
+	[
+		{
+			"parameter": "LOGIN",
+			"description": "Identifiant sur le portail Free ADSL",
+			"xtype": "textfield",
+			"default_value": "",
+			"field": "allowBlank: false, width: 250"
+		},
+		{
+			"parameter": "PASSWORD",
+			"description": "Mot de passe sur le portail Free ADSL",
+			"xtype": "textfield",
+			"default_value": "",
+			"field": "allowBlank: false, width: 250"
+		}
+	],
+	"scripts":
+	[
+		{
+			"name": "free_messagerie.php"
+		}
+	],
+	"devices":
+	[
+		{
+			"device_id": "freemsg",
+			"module_id": "51",
+			"type": "http",
+			"name_fr": "plugin.name",
+			"icon": "Free_Messagerie.png",
+			"utilisation_id": "35",
+			"value_unit": "msg",
+			"parameters":
+			{
+				"VAR1": "plugin.parameters.LOGIN",
+				"VAR2": "plugin.parameters.PASSWORD",
+				"value_type": "float",
+				"ignore_errors": 3,
+				"RAW_URL": "http://localhost/script/?exec=free_messagerie.php&login=[VAR1]&passwd=[VAR2]",
+				"RAW_XPATH": "count(/FreeMessagerie/Messages/Message)",
+				"POLLING": "15"
+			}
+		}
+	]
+}
